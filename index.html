@@ -13,6 +13,7 @@ body {
     background-color: #36393f;
     color: #ffffff;
     overflow: hidden;
+    position: relative;
 }
 
 .container {
@@ -70,11 +71,6 @@ body {
 }
 
 /* Snow animation */
-@keyframes snow {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100vh); }
-}
-
 .snowflake {
     position: absolute;
     top: -10px;
@@ -86,6 +82,32 @@ body {
 .snowflake::before {
     content: "❄";
     color: #fff;
+}
+
+@keyframes snow {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+}
+
+.switcher {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 100;
+}
+
+.switcher button {
+    background-color: #7289da;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.switcher button:hover {
+    background-color: #677bc4;
 }
 </style>
 </head>
@@ -104,6 +126,10 @@ body {
     </div>
 </div>
 
+<div class="switcher">
+    <button onclick="switchIframe(1)">Switch to Second iframe</button>
+</div>
+
 <!-- Snow animation -->
 <script>
 for (let i = 0; i < 20; i++) {
@@ -115,6 +141,28 @@ for (let i = 0; i < 20; i++) {
             snowflake.remove();
         }, 10000); // Remove snowflake after 10 seconds
     }, Math.random() * 5000); // Add snowflake randomly every 0-5 seconds
+}
+
+function switchIframe(index) {
+    let iframes = document.querySelectorAll('.iframe-container iframe');
+    iframes.forEach((iframe, i) => {
+        if (i === index - 1) {
+            iframe.style.display = 'block';
+        } else {
+            iframe.style.display = 'none';
+        }
+    });
+
+    let buttons = document.querySelectorAll('.switcher button');
+    buttons.forEach((button, i) => {
+        if (i === index - 1) {
+            button.innerText = 'Switch to First iframe';
+            button.setAttribute('onclick', 'switchIframe(0)');
+        } else {
+            button.innerText = 'Switch to Second iframe';
+            button.setAttribute('onclick', 'switchIframe(1)');
+        }
+    });
 }
 </script>
 
