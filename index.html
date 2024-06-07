@@ -109,6 +109,23 @@ body {
 .switcher button:hover {
     background-color: #677bc4;
 }
+
+/* Button inside iframe */
+.iframe-button {
+    background-color: #7289da;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 20px auto;
+}
+
+.iframe-button:hover {
+    background-color: #677bc4;
+}
 </style>
 </head>
 <body>
@@ -123,6 +140,12 @@ body {
 
     <div class="iframe-container">
         <iframe src="https://lookerstudio.google.com/embed/reporting/116a35fb-491e-41e2-b4cf-bc52d6bd2d5e/page/u9G1C" frameborder="0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+        <button class="iframe-button">Click Me!</button>
+    </div>
+
+    <div class="iframe-container" style="display:none;">
+        <iframe src="https://lookerstudio.google.com/embed/reporting/9dcc8738-fdf8-49db-b8d9-7beea9303f78/page/69G1C" frameborder="0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+        <button class="iframe-button">Click Me!</button>
     </div>
 </div>
 
@@ -144,9 +167,9 @@ for (let i = 0; i < 20; i++) {
 }
 
 function switchIframe(index) {
-    let iframes = document.querySelectorAll('.iframe-container iframe');
+    let iframes = document.querySelectorAll('.iframe-container');
     iframes.forEach((iframe, i) => {
-        if (i === index - 1) {
+        if (i === index) {
             iframe.style.display = 'block';
         } else {
             iframe.style.display = 'none';
@@ -155,7 +178,7 @@ function switchIframe(index) {
 
     let buttons = document.querySelectorAll('.switcher button');
     buttons.forEach((button, i) => {
-        if (i === index - 1) {
+        if (i === index) {
             button.innerText = 'Switch to First iframe';
             button.setAttribute('onclick', 'switchIframe(0)');
         } else {
