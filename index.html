@@ -10,17 +10,16 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-image: url('https://example.com/background-image.jpg'); /* Add your background image URL here */
-    background-size: cover;
-    background-position: center;
+    background-color: #36393f;
     color: #ffffff;
+    overflow: hidden;
 }
 
 .container {
     max-width: 800px;
     margin: 50px auto;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #2f3136;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
@@ -46,7 +45,6 @@ body {
 }
 
 .welcome-message {
-    background-color: rgba(255, 255, 255, 0.8);
     padding: 10px;
     border-radius: 5px;
     text-align: center;
@@ -70,6 +68,25 @@ body {
 .telegram-link:hover {
     text-decoration: underline;
 }
+
+/* Snow animation */
+@keyframes snow {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    left: calc(10% + 90vw * random());
+    animation: snow linear infinite;
+    animation-duration: calc(5s + 5s * random());
+}
+
+.snowflake::before {
+    content: "❄";
+    color: #fff;
+}
 </style>
 </head>
 <body>
@@ -86,6 +103,20 @@ body {
         <iframe src="https://lookerstudio.google.com/embed/reporting/116a35fb-491e-41e2-b4cf-bc52d6bd2d5e/page/u9G1C" frameborder="0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
     </div>
 </div>
+
+<!-- Snow animation -->
+<script>
+for (let i = 0; i < 20; i++) {
+    setTimeout(function() {
+        let snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake');
+        document.body.appendChild(snowflake);
+        setTimeout(function() {
+            snowflake.remove();
+        }, 10000); // Remove snowflake after 10 seconds
+    }, Math.random() * 5000); // Add snowflake randomly every 0-5 seconds
+}
+</script>
 
 </body>
 </html>
