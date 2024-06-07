@@ -140,17 +140,15 @@ body {
 
     <div class="iframe-container">
         <iframe src="https://lookerstudio.google.com/embed/reporting/116a35fb-491e-41e2-b4cf-bc52d6bd2d5e/page/u9G1C" frameborder="0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-        <button class="iframe-button">Click Me!</button>
     </div>
 
     <div class="iframe-container" style="display:none;">
         <iframe src="https://lookerstudio.google.com/embed/reporting/9dcc8738-fdf8-49db-b8d9-7beea9303f78/page/69G1C" frameborder="0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-        <button class="iframe-button">Click Me!</button>
     </div>
 </div>
 
 <div class="switcher">
-    <<button class="iframe-button">Click Me!</button>
+    <button class="iframe-button">Go to COT DATA</button>
 </div>
 
 <!-- Snow animation -->
@@ -179,10 +177,10 @@ function switchIframe(index) {
     let buttons = document.querySelectorAll('.switcher button');
     buttons.forEach((button, i) => {
         if (i === index) {
-            button.innerText = 'Switch to First iframe';
+            button.innerText = 'Go to COT DATA';
             button.setAttribute('onclick', 'switchIframe(0)');
         } else {
-            button.innerText = 'Switch to Second iframe';
+            button.innerText = 'Go to Senriment DATA';
             button.setAttribute('onclick', 'switchIframe(1)');
         }
     });
